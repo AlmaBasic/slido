@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/stylesheets/sidebar.css'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        const newRoute = (route) => {
+            location.href = route;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <%- include('./sidebar.ejs'); %>
+        <!-- HOME SECTION -->
+        <section class="home-section">
+            <h1>Lecturer panel</h1>
+
+            <!-- Lectures -->
+            <h2 id="lectures">Lectures</h2>
+            <button class="btn btn-success" id="btn-add-lecture">Add new lecture</button><br><br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Lecture name</th>
+                    <th>Number of asked questions</th>
+                    <th>Number of answered questions</th>
+                    <th>Entry code</th>
+                    <th>About lecture</th>
+                    <th>Delete lecture</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% lectures.forEach((lecture)=>{ %>
+                    <tr class="lecture_row_<%= lecture.id %>">
+                        <td><%- lecture.name %></td>
+                        <td><%- lecture.all_questions %></td>
+                        <td><%- lecture.ans_questions %></td>
+                        <td>
+                            <button type="button" onclick="shareCode('<%- lecture.id %>')" class="btn btn-light">Share</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="moreLecture('<%- lecture.id %>')" class="btn btn-success">More</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteLecture('<%- lecture.id %>')" class="btn btn-dark">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+            <!-- Illegal words -->
+            <h2 id="words">Illegal words</h2>
+            <button class="btn btn-success" id="btn-add-word">Add new word</button><br><br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Illegal word</th>
+                    <th>Edit illegal word</th>
+                    <th>Delete illegal word</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% words.forEach((word)=>{ %>
+                    <tr class="word_row_<%= word.id %>">
+                        <th><%= word.id %></th>
+                        <td>
+                            <input class="form-control" type="text" value="<%= word.word %>" name="word" id="word<%= word.id %>">
+                        </td>
+                        <td>
+                            <button type="button" onclick="editWord('<%= word.id %>')" class="btn btn-success">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteWord('<%= word.id %>')" class="btn btn-dark">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+
+        </section>
+    </div>
+    <script src="/javascripts/dashboard-script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</body>
+</html>

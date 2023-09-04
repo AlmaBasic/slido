@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <form method="post" action="/users/registration">
+            <div class="form-group">
+                <label for="input_first_name">First name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter your first name" name="first_name">
+            </div>
+            <div class="form-group">
+                <label for="input_last_name">Last name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Enter your last name" name="last_name">
+            </div>
+            <div class="form-group">
+                <label for="input_email">Email</label>
+                <input type="email" class="form-control" placeholder="Enter your email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="input_phone">Phone</label>
+                <input type="tel" class="form-control" placeholder="Enter your phone number" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="input_username">Username</label>
+                <input type="text" class="form-control" placeholder="Enter your username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="input_password">Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" name="password">
+                <small id="help_password" class="text-muted"> Must be 5-20 characters long. </small>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="input_repeat_password">Repeat password</label>-->
+<!--                <input type="password" class="form-control" placeholder="Repeat password" name="repeated_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>-->
+<!--            </div>-->
+            <input type="submit" class="btn btn-success" value="Save">
+        </form>
+    </div>
+    <script src="./public/javascripts/registration.js"></script>
+</body>
+</html>

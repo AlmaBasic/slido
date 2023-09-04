@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <link rel="stylesheet" href='/stylesheets/sidebar.css'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        const newRoute = (route) => {
+            location.href = route;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <%- include('./admin-sidebar.ejs'); %>
+        <!-- HOME SECTION -->
+        <section class="home-section">
+            <h1>Admin panel</h1>
+
+            <!-- Users -->
+            <h2 id="users">Users</h2>
+            <button class="btn btn-success" id="btn-add-user">Add new user</button><br><br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Blocked until</th>
+                    <th>Days</th>
+                    <th>Block</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% persons.forEach((person)=>{ %>
+                    <tr>
+                        <td><input class="form-control" type="text" value="<%- person.first_name %>" name="first_name" id="first_name<%- person.id %>"></td>
+                        <td><input class="form-control" type="text" value="<%- person.last_name %>" name="last_name" id="last_name<%- person.id %>"></td>
+                        <td><input class="form-control" type="text" value="<%- person.username %>" name="username" id="username<%- person.id %>"></td>
+                        <td><input class="form-control" type="text" value="<%- person.email %>" name="email" id="email<%- person.id %>"></td>
+                        <td><input class="form-control" type="text" value="<%- person.phone %>" name="phone" id="phone<%- person.id %>"></td>
+                        <td><input class="form-control" type="text" value="<%= person.blocked_until %>" name="data" id="b_date<%- person.id %>"></td>
+                        <td><input class="form-control" type="number" value="15" name="block_days" id="b_days<%- person.id %>"></td>
+                        <td>
+                            <button type="button" onclick="blockUser('<%- person.id %>', 'admin')" class="btn btn-light">Block</button>
+                        </td>
+                        <td>
+                            <button type="button" id="btn-edit-user" onclick="editUser('<%- person.id %>', 'admin')" class="btn btn-success">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteUser('<%- person.id %>', 'admin')" class="btn btn-dark">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+            <!-- Lectures -->
+            <h2 id="lectures">Lectures</h2>
+            <button class="btn btn-success" id="btn-add-lecture">Add new lecture</button><br><br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th>Repeat rule</th>
+                    <th>Edit </th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% lectures.forEach((lecture)=>{ %>
+                    <tr class="lecture_row_<%= lecture.id %>">
+                        <td>
+                            <input class="form-control" type="text" value="<%- lecture.name %>" name="lecture_name" id="lecture_name<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="date" value="<%= lecture.start_time %>" name="start_time" id="start_time<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="date" value="<%= lecture.end_time %>" name="end_time" id="end_time<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" value="<%= lecture.repeat_rule %>" name="repeat_rule" id="repeat_rule<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <button type="button" onclick="editLectureAdmin('<%- lecture.id %>')" class="btn btn-success">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteLecture('<%- lecture.id %>')" class="btn btn-dark">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+            <!-- Questions -->
+            <h2 id="question">Questions</h2>
+            <button class="btn btn-success" id="btn-add-question">Add new question</button><br><br>
+            <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Lecture</th>
+                <th>Edit </th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% questions.forEach((question)=>{ %>
+                <tr class="question_row_<%= question.id %>">
+                    <th><%= question.id %></th>
+                    <td>
+                        <input class="form-control" type="text" value="<%= question.text %>" name="question_text" id="question_text<%= question.id %>">
+                    </td>
+                    <td><%= question.name%></td>
+                    <td>
+                        <button type="button" onclick="editQuestion('<%= question.id %>')" class="btn btn-success">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="deleteQuestion('<%= question.id %>')" class="btn btn-dark">Delete</button>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+            </table>
+
+            <!-- Illegal words -->
+            <h2 id="words">Illegal words</h2>
+            <button class="btn btn-success" id="btn-add-word">Add new word</button><br><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Illegal word</th>
+                        <th>Edit </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% words.forEach((word)=>{ %>
+                    <tr class="word_row_<%= word.id %>">
+                        <th><%= word.id %></th>
+                        <td>
+                            <input class="form-control" type="text" value="<%= word.word %>" name="word" id="word<%= word.id %>">
+                        </td>
+                        <td>
+                            <button type="button" onclick="editWord('<%= word.id %>')" class="btn btn-success">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteWord('<%= word.id %>')" class="btn btn-dark">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+
+        </section>
+    </div>
+        <script src="/javascripts/admin-dashboard-script.js"></script>
+        <script src="/javascripts/dashboard-script.js"></script>
+        <script src="/javascripts/question-script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</body>
+</html>

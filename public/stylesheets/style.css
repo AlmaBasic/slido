@@ -1,0 +1,28 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #4cae4c;
+}
+
+#code-body {
+  background: #212529;
+  color: #ffffff;
+}
+
+#code-body h1 {
+  background: #212529;
+  font-size: xxx-large;
+  text-align: center
+}
+
+/*.bg {*/
+/*  background-image: url("public/images/slika.jpg");*/
+/*  height: 50%;*/
+/*  !* Center and scale the image nicely *!*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*}*/

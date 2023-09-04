@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body id="code-body" >
+        <div class="container" id="code-body">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Send mail</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog" style="color: #212529">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Send lecture code in email</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Enter email</p>
+                                    <form method="post" action="/users/send-email">
+                                        <input type="text" placeholder="Enter code here..." name="code">
+                                        <input type="email" placeholder="Enter email here..." name="email">
+                                        <input type="submit" value="Send" class="btn btn-success">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <h1><%= title %></h1>
+                <h1 class="jumbotron"><%= entry_code %></h1>
+            </div>
+        </div>
+
+    </body>
+</html>

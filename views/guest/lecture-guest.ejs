@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        const newRoute = (route) => {
+            location.href = route;
+        }
+    </script>
+</head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Welcome to <%= title%></h2>
+                </div>
+                <div class=" col-md-6">
+                    <button class="btn btn-success" id="btn-add-new-question">Add new question</button>
+                </div>
+            </div>
+            <h2 id="question">Asked questions</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Num of likes</th>
+                    <th>Like</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% questions.forEach((question)=>{ %>
+                    <tr class="question_row_<%= question.id %>">
+                        <td><%= question.text %></td>
+                        <td class="question_likes_<%= question.id %>"><%= question.num_of_likes %></td>
+                        <td>
+                            <button type="button" id="like_btn" onclick="likeQuestion('<%= question.id %>')" class="btn btn-success" >
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+            <div class="row">
+                <h3>Rate </h3>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="mark">
+                        <option selected>Rate this lecture</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" onclick="rateLecture('<%= lecture_id %>')">Rate</button>
+                </div>
+            </div>
+        </div>
+        <script src="/javascripts/lecture-guest.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
+</html>

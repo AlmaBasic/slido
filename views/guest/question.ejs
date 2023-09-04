@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <form method="post" action="/question/add">
+            <div class="form-group">
+                <label for="input_name">Question</label><br>
+                <select class="form-select" aria-label="Default select example" id="lecture" name="lecture_id">
+                    <option selected>Select lecture</option>
+                    <% lectures.forEach((lecture)=>{%>
+                        <option value="<%= lecture.id%>"><%= lecture.name %></option>
+                    <%})%>
+                </select>
+                <input type="text" class="form-control" id="question" placeholder="Enter your question" name="question">
+            </div>
+            <input type="submit" class="btn btn-success" value="Ask">
+        </form>
+    </div>
+
+</body>
+</html>

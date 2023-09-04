@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav>
+                    <div class="auth text-right">
+                        <button class="btn btn-light" id="btn-login">Login</button>
+                        <button class="btn btn-success" id="btn-registration">Registration</button>
+                    </div>
+                </nav>
+            </header>
+            <div class="container fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h1>Welcome to SLIDO!</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                        <form method="post" action="/enter">
+                            <div class="col-sm-6 col-md-3">
+                                <label for="input_code">Join as a guest?</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <input type="text" class="form-control" id="code" name="code" placeholder="Enter code here">
+
+                                <button class="btn btn-outline-secondary" type="submit" style="border-color: white; background-color: white"><i class='bx bx-right-arrow-alt' ></i></button>
+                            </div>
+                        </form>
+                    <div class="col-sm-4"></div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            document.getElementById("btn-login").onclick = function () {
+                location.href = "/login";
+            };
+            document.getElementById("btn-registration").onclick = function () {
+                location.href = "/users/registration";
+            };
+        </script>
+
+    </body>
+</html>

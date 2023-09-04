@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1><%= title %></h1>
+            <form method="post" action="/users/lecture/add">
+                <div class="form-group">
+                    <label for="input_name">Name</label>
+                    <input type="text" class="form-control" id="lecture_name" name="lecture_name" placeholder="Enter your lecture name" >
+                </div>
+                <div class="form-group">
+                    <label for="input_start_time">Start time</label>
+                    <input type="datetime-local" class="form-control" id="start_time" name="start_time" placeholder="Enter start time">
+                </div>
+                <div class="form-group">
+                    <label for="input_end_time">End time</label>
+                    <input type="datetime-local" class="form-control" id="end_time" name="end_time" placeholder="Enter end time">
+                </div>
+                <div class="form-group">
+                    <label for="input_repeat_rule">Repeat rule</label>
+                    <input type="text" class="form-control" id="repeat_rule" name="repeat_rule" placeholder="Enter repeat rule">
+                </div>
+                <div class="form-group">
+                    <label for="input_cover_photo">Cover photo </label>
+                    <input type="file" class="form-control" id="cover_photo" name="cover_photo" placeholder="Drag photo" >
+                </div>
+                <input type="submit" class="btn btn-success" value="Save">
+            </form>
+        </div>
+
+    </body>
+</html>

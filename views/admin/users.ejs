@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/stylesheets/sidebar.css'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        const newRoute = (route) => {
+            location.href = route;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <%- include('./admin-sidebar.ejs'); %>
+        <!-- HOME SECTION -->
+        <section class="home-section">
+            <h2 id="users">Edit your profile</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="text" value="<%= person.first_name %>" name="first_name"/>
+                    </td>
+                    <td>
+                        <input type="text" value="<%= person.last_name %>" name="last_name"/>
+                    </td>
+                    <td>
+                        <input type="text" value="<%= person.username %>" name="username"/>
+                    </td>
+                    <td>
+                        <input type="number" value="<%= person.phone %>" name="phone"/>
+                    </td>
+                    <td>
+                        <button type="button" onclick="editProfile('<%- person.id %>')" class="btn btn-success">Save</button>
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/javascripts/admin-dashboard-script.js"></script>
+
+</body>
+</html>

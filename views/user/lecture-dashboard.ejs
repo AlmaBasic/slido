@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/stylesheets/sidebar.css'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        const newRoute = (route) => {
+            location.href = route;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <%- include('./sidebar.ejs'); %>
+        <!-- HOME SECTION -->
+        <section class="home-section">
+            <h1>Lecture: <%= lecture.name %></h1>
+<!--            <div class="center">-->
+<!--                <img src="../images/download.png" style="height: auto">-->
+<!--            </div>-->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th>Repeat rule</th>
+                    <th>Cover photo</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="lecture_row_<%= lecture.id %>">
+                        <td>
+                            <input class="form-control" type="text" value="<%= lecture.name %>" name="lecture_name" id="lecture_name<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="date" value="<%= lecture.start_time %>" name="start_time" id="start_time<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="date" value="<%= lecture.end_time %>" name="end_time" id="end_time<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" value="<%= lecture.repeat_rule %>" name="repeat_rule" id="repeat_rule<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <input class="form-control" type="file" name="cover_photo" id="cover_photo<%- lecture.id %>">
+                        </td>
+                        <td>
+                            <button type="button" onclick="editLecture('<%- lecture.id %>')" class="btn btn-success">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Questions -->
+            <h2 id="question">Questions</h2>
+            <button class="btn btn-success" id="btn-add-question">Add new question</button>
+            <h2 id="question">Asked questions</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Num of likes</th>
+                    <th>Answer</th>
+                    <th>Hide</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% questions.forEach((question)=>{ %>
+                        <tr class="question_row_<%= question.id %>">
+                            <th><%= question.id %></th>
+                            <td><%= question.text %></td>
+                            <td><%= question.num_of_likes %></td>
+                            <td>
+                                <button type="button" onclick="answerQuestion('<%= question.id %>')" class="btn btn-light">Answered</button>
+                            </td>
+                            <td>
+                                <button type="button" onclick="hideQuestion('<%= question.id %>')" class="btn btn-success">Hide</button>
+                            </td>
+                            <td>
+                                <button type="button" onclick="deleteQuestion('<%= question.id %>')" class="btn btn-dark">Delete</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <h2 id="question">Answered questions</h2>
+            <table class="table answeredQuestions">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% ans_questions.forEach((question)=>{ %>
+                    <tr class="ans_question_row_<%= question.id %>">
+                        <th><%= question.id %></th>
+                        <td><%= question.text %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+            <h2 id="question">Hidden questions</h2>
+            <table class="table hiddenQuestions">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% hidden_questions.forEach((question)=>{ %>
+                    <tr class="question_row_<%= question.id %>">
+                        <th><%= question.id %></th>
+                        <td><%= question.text %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script src="/javascripts/question-script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</body>
+</html>
