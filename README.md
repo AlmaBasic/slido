@@ -35,4 +35,4 @@ U nastavku će biti navedene detaljnije specifikacije za svaki tip korisnika.
     - Imaju mogućnost pristupa nekom predavanju putem linka kojeg podijeli predavač na mail;
     - Imaju mogućnost filtriranja i sortiranja postavljenih pitanja.
 
-# demo video: https://www.youtube.com/watch?v=DNp3JyJnf-s&ab_channel=AlmaBasic
+demo video: https://www.youtube.com/watch?v=DNp3JyJnf-s&ab_channel=AlmaBasic
